@@ -69,14 +69,14 @@ class Logic:
 
     def findPatient(self, criteria):
         for i in self.patients:
-            if criteria == i.attr["name"] or criteria == i.attr["email"] or criteria == i.attr["birthday"] or criteria == i.attr["address"] or criteria == i.attr["phone"]:
+            if criteria == i.attr["name"].rstrip()  or criteria == i.attr["email"].rstrip()  or criteria == i.attr["birthday"].rstrip()  or criteria == i.attr["address"].rstrip()  or criteria == i.attr["phone"].rstrip() :
                 return i
 
         return None
 
     def findPersonnel(self, criteria):
-        for i in self.patients:
-            if criteria == i.attr["name"] or criteria == i.attr["email"]:
+        for i in self.personnel:
+            if criteria == i.attr["name"].rstrip() or criteria == i.attr["email"].rstrip():
                 return i
 
         return None
@@ -101,11 +101,11 @@ class Logic:
         login = False
 
         p = self.findPatient(email)
-        if p is not None and password == p.attr["password"]:
+        if p is not None and password == p.attr["password"].rstrip():
             login = True
         else:
             p = self.findPersonnel(email)
-            if p is not None and password == p.attr["password"]:
+            if p is not None and password == p.attr["password"].rstrip():
                 login = True
 
         if login:

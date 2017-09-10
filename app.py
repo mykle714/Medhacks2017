@@ -12,7 +12,7 @@ def index():
 
 @app.route("/mainpage.html", methods=["GET","POST"])
 def main():
-    if request.method == "POST" and request.form['button'] == 'submit':
+    if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
         logic.setUser(logic.login(email, password))

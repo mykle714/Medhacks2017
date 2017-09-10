@@ -1,5 +1,0 @@
-patient Michael 4/21/1997 Chicago 3316255936 email@email.com memes BlueCrossBlueShield ABC123456 abc123 HMO 23453245
-patient Reem 9/10/2016 NKorea 4206661738 no@gmail.com leemralabi InsuranceMan djn23ij4j k1jr123 DMG 23452345
-personnel Gabe doctorGabe@doctor.com gabeisgreat
-personnel Jodi doctorMou@medhacks.org password123
-personnel Nick nurseNick@nursesrule.edu nickisnurse
