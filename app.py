@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, make_response, redirect
-import json
 from logic import Logic
 import api
 app = Flask(__name__)
@@ -35,11 +34,11 @@ def reg1():
             return render_template("registrationpage.html")
         else:
             logic.setUser(api.Patient(name, birthday, address, phone, email, password))
-            return redirect("%smainmenu.html" % home, code=302)
+            return redirect("%sregistrationpage2.html" % home, code=302)
     return render_template("registrationpage.html")
 
 @app.route("/registrationpage2.html", methods=["GET", "POST"])
-def nonurgent():
+def reg2():
     if logic.user is None:
         return redirect("%smainpage.html" % home, code=302)
     if request.method =="POST":
@@ -54,6 +53,7 @@ def nonurgent():
         else:
             logic.user.updateInsurance(insurance, group, policy, type, customer)
             logic.addPatient2(logic.user)
+            logic.saveUser(logic.user)
             return redirect("%smainmenu.html" % home, code=302)
     return render_template("registrationpage2.html")
 
