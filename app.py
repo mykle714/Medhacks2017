@@ -47,6 +47,7 @@ def reg2():
         policy = request.form['policy']
         type = request.form['type']
         customer = request.form['customer']
+        logic.assignNurse(logic.user)
 
         if insurance == "" or group == "" or policy == "" or type == "" or customer == "":
             return render_template("registrationpage2.html")
@@ -67,7 +68,7 @@ def menu():
 def profile():
     if logic.user is None:
         return redirect("%smainpage.html" % home, code=302)
-    return render_template("profile.html")
+    return render_template("profile.html", data=logic.getUser())
 
 @app.route("/settings.html")
 def settings():

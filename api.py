@@ -4,24 +4,22 @@ import os
 
 class User:
     def __init__(self, name, email, password):
-        self.name = name
-        self.email = email
-        self.password = password
+        self.attr = {"name":name, "email":email, "password":password}
     
     def changeName(self, name):
-        self.name = name
+        self.attr["name"] = name
     
     def readLog(self, name):
-        if os.path.isfile(logs % (self.name, name)):
-            with open(logs % (self.name, name), "a+") as file:
+        if os.path.isfile(logs % (self.attr["name"], name)):
+            with open(logs % (self.attr["name"], name), "a+") as file:
                 return file
-        elif os.path.isfile(logs % (name, self.name)):
-            with open(logs % (name, self.name), "a+") as file:
+        elif os.path.isfile(logs % (name, self.attr["name"])):
+            with open(logs % (name, self.attr["name"]), "a+") as file:
                 return file
 
     def findUser(name, list):
         for i in list:
-            if i.name == name:
+            if i.attr["name"] == name:
                 return i
         return None
     
@@ -36,57 +34,63 @@ class User:
         self.status = status
 
     def logWrite(self, title, data):
-        with open("logs/%s.%s.txt" % (title, self.name if isinstance(self, MedicalPersonel) else self.nurse), "a") as file:
-            file.write("%s: %s" % (self.name, data))
+        with open("logs/%s.%s.txt" % (title, self.attr["name"] if isinstance(self, MedicalPersonnel) else self.nurse), "a") as file:
+            file.write("%s: %s" % (self.attr["name"], data))
 
-class Patient(User):
-
-    attr = ["name", "birthday", "address", "phone", "email", "password", "insurance", "group", "policy", "type", "medication", "allergies", "history", "pain", "status"]
-
-    def __init__(self, name, birthday, address, phone, email, password):
-        User.__init__(self,name, email, password)
-        self.birthday = birthday
-        self.address = address
-        self.phone = phone
-        self.email = email
-        self.password = password
-        
-    def updateInsurance(self, insurance, group, policy, type, customer):
-        self.insurance = insurance
-        self.group = group
-        self.policy = policy
-        self.type = type
-        self.customer = customer
-
-    def requestCall(self):
-        self.nurse.calls.put(self)
-
-    def updatePain(self, pain):
-        assert isinstance(pain, int)
-        self.pain = pain
-
-    def assignNurse(self, nurse):
-        assert isinstance(nurse, MedicalPersonel)
-        self.nurse = nurse
-
-    def get(self, name):
+    def get(self, name=None):
         if name is not None:
             return getattr(self, name)
-        else:
+        elif isinstance(self, Patient):
             ret = []
-            for i in Patient.attr:
-                ret.append(getattr(self,i))
+            for i in self.attr:
+                ret.append(self.attr[i])
+
+            return ret
+        elif isinstance(self, MedicalPersonnel):
+            ret = []
+            for i in self.attr:
+                ret.append(self.attr[i])
 
             return ret
 
-class MedicalPersonel(User):
+class Patient(User):
 
-    attr = ["name", "email", "password", "calls", "status"]
+    def __init__(self, name, birthday, address, phone, email, password):
+        User.__init__(self, name, email, password)
+        self.attr["birthday"] = birthday
+        self.attr["address"] = address
+        self.attr["phone"] = phone
+        self.attr["insurance"] = None
+        self.attr["group"] = None
+        self.attr["policy"] = None
+        self.attr["type"] = None
+        self.attr["customer"] = None
+
+    def updateInsurance(self, insurance, group, policy, type, customer):
+        self.attr["insurance"] = insurance
+        self.attr["group"] = group
+        self.attr["policy"] = policy
+        self.attr["type"] = type
+        self.attr["customer"] = customer
+
+    def requestCall(self):
+        self.attr["nurse"].calls.put(self)
+
+    def updatePain(self, pain):
+        assert isinstance(pain, int)
+        self.attr["pain"] = pain
+
+    def assignNurse(self, nurse):
+        self.attr["nurse"] = nurse
+
+
+
+class MedicalPersonnel(User):
 
     def __init__(self, name, email, password):
-        User.__init__(self,name, email, password)
-        self.calls = Queue.Queue()
-        self.status = False
+        User.__init__(self, name, email, password)
+        self.attr["calls"] = Queue.Queue()
+        self.attr["status"] = False
 
     def lookupPatient(self, name, patients):
         ret = []
@@ -99,9 +103,9 @@ class MedicalPersonel(User):
 
     def forwardLog(self, patient, name, personnel):
         for i in personnel:
-            if i.name == name:
-                with open(logs % (patient.name, i.name), "a+") as file:
-                    with open(logs % (patient.name, self.name), "r") as f:
+            if i.attr["name"] == name:
+                with open(logs % (patient.name, i.attr["name"]), "a+") as file:
+                    with open(logs % (patient.name, self.attr["name"]), "r") as f:
                         for i in f:
                             file.write(i)
                 return True
@@ -118,8 +122,8 @@ class MedicalPersonel(User):
         t2.changeStatus()
 
     def takeCall(self):
-        if not self.calls.empty():
-            patient = self.calls.get()
+        if not self.attr["calls"].empty():
+            patient = self.attr["calls"].get()
         #start call with patient
 
     def list(self):
@@ -128,7 +132,7 @@ class MedicalPersonel(User):
         for root, dir, files in os.walk("./logs"):
             for i in files:
                 t1 = i.split(".")
-                if t1[1] == self.name:
+                if t1[1] == self.attr["name"]:
                     ret.append(t1[0])
 
         return ret
