@@ -2,23 +2,35 @@
 <html>
 <head>
   <link rel="shortcut icon" type="image|x-icon" href="weblogo.png">
-  <!--Hippa laws(?)-->
-  <!--Stylize this better-->
+  <!--LET THIS BE BSED FOR NOW-->
   <style>
     div {
       text-align: auto;
-        width: 600px;
-        border: 2px solid powderblue;
+        width: 300px;
+        border: 1px solid black;
         padding: auto;
         margin: auto;
     }
     p {
-      text-align: center;
-      font-size: 20;
+      text-align: left;
+      font-size: 12px;
+      margin-left: 2px;
     }
     button {
-      align-items: center;
-    }
+      /*float: center;
+      /*display: block;
+      background-color: eggshell;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;*/
+      text-align: auto;
+      border-radius: 30px;
+      width: 45px;
+      height: 45px;
+      border: 10px solid white;
+      padding: auto;
+      display: inline-flex;
+  }
     .icon-bar {
         width: 100%; /* Full-width */
         background-color: #71dde2; /* kinda blue background */
@@ -50,35 +62,47 @@
     }
     </script>
 </head>
+
 <body>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <div class="icon-bar">
-    <a class="active" href="mainmenu.html"><i class="fa fa-home"></i></a>
+    <a class="active" href="page2.html"><i class="fa fa-home"></i></a>
     <a href="page3.html"><i class="fa fa-address-card-o"></i></a>
     <a href="#"><i class="fa fa-search"></i></a>
-    <a href="messages.html"><i class="fa fa-envelope"></i></a>
-    <a href="#"><i class="fa fa-ambulance"></i></a>
+    <a href="#"><i class="fa fa-envelope"></i></a>
+    <a href="page4.html"><i class="fa fa-gear"></i></a>
 
 
   </div>
-  <p> Give Consent </p>
+  <h2> Settings </h2>
+
   <div style="overflow-y:scroll;">
-    <p> <!---INSERT HIPPA LAWS HERE-->
-      I understand:
-      <br>
-      This authorization is voluntary.
-      My treatment, payment for it and/or elgibility for enrollments and benefits cannot be conditioned on my signing this authorization form. I may recieve a copy of this form. I may inspect my protected health information without signing this form. This authorization to disclose information may be revoked by me at any time, except the extent that actually has been taken prior to receipt of revocation.
-    </p>
+    <p> Notification Settings</p>
+    <button> <a href="#"><i class="fa fa-bell"></i></a> </button>
    </div>
-   <div id="buttons" style="text-align:center;">
-  <a href="mainmenu.html">
-    <button id="agreement" style="background-color:eggshell; width:70px; border:3px; float:center;"> I Agree </button>
-  </a>
-  <a href="">
-    <button id="agreement" onclick="myFunction()" style="background-color:eggshell; width:70px; border:3px; float:center;"> I Disagree </button>
-    <!--Make popup that informs that if they do not click I Agree, then they won't receive care-->
-  </a>
+   <div style="overflow-y:scroll;">
+     <p> Display Settings </p>
+    </div>
+    <div style="overflow-y:scroll;">
+     </div>
+
 </div>
 </body>
+<footer>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <button style="width:100px; height:70px;">
+  <p style="font-size:10px; text-align:center;">Send Feedback</p>
+</button>
+<button style="width:100px; height:70px;">
+  <p style="font-size:10px; text-align:center;">HIPAA PRIVACY INFO</p>
+</button>
+<button style="width:100px; height:70px;">
+  <p style="font-size:10px; text-align:center;">SIGN OUT</p>
+</button>
+ </footer>
 </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="shortcut icon" type="image|x-icon" href="weblogo.png">
+
+  <style>
+  html, body {
+  height: 100%;
+  margin: 0;
+}
+.image{
+  width: 500px;
+ height: 500px;
+}
+.grid2x2 {
+  min-height: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.grid2x2 > div {
+  display: flex;
+  flex-basis: calc(0% - 300px);
+  justify-content: center;
+  flex-direction: column;
+}
+.grid2x2 > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.box { margin: none; }
+.box1 { background-color: white; }
+.box2 { background-color: white; }
+.box3 { background-color: white; }
+.box4 { background-color: white; }
+
+  p {
+   font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+   font-size: 16px;
+   font-style: bold;
+   font-variant: normal;
+   font-weight: 400;
+   line-height: 30px;
+   text-align: center;
+   font-color: white;
+ }
+  h2 {
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	  font-size: 24px;
+	  font-style: normal;
+	  font-variant: normal;
+	  font-weight: 400;
+	  line-height: 30px;
+    text-align: center;
+  }
+  h1 {
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	  font-size: 30px;
+	  font-style: normal;
+	  font-variant: normal;
+	  font-weight: 400;
+	  line-height: 30px;
+    text-align: center;
+  }
+  .container {
+    border-width: thin;
+    align-self: center;
+  }
+  .icon-bar {
+      width: 100%; /* Full-width */
+      background-color: #71dde2; /* kinda blue background */
+      overflow: auto; /* Overflow due to float */
+  }
+
+  .icon-bar a {
+      float: left; /* Float links side by side */
+      text-align: center; /* Center-align text */
+      width: 20%; /* Equal width (5 icons with 20% width each = 100%)
+      padding: 12px 0; /* Some top and bottom padding */
+      transition: all 0.4s ease; /* Add transition for hover effects */
+      color: white; /* White text color */
+      font-size: 20px; /* Increased font size */
+  }
+
+  .icon-bar a:hover {
+      background-color: #a9e2e5; /* Add a hover color */
+  }
+
+  .active {
+      background-color: #66aaad; /* Add an active/current color */
+  }
+  </style>
+</head>
+<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <div class="icon-bar">
+    <a class="active" href="page2.html"><i class="fa fa-home"></i></a>
+    <a href="page3.html"><i class="fa fa-address-card-o"></i></a>
+    <a href="#"><i class="fa fa-search"></i></a>
+    <a href="messages.html"><i class="fa fa-envelope"></i></a>
+    <a href="#"><i class="fa fa-ambulance"></i></a>
+  </div>
+
+<div class="grid2x2">
+  <div class="box box1"><a href="#"><img class="image" src="NC_MessageHistory.png"/></a></div>
+  <div class="box box2"><a href="#"><img class="image" src="NC_NurseOnDuty.png"/></a></div>
+  <div class="box box3"><a href="profile.html"><img class="image"src="NC_Profile.png"/></a></div>
+  <div class="box box4"><a href="settings.html"><img class="image" src="NC_Settings.png"/></a></div>
+</div>
+</body>
+</html>
