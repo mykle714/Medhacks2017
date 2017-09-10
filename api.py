@@ -97,8 +97,8 @@ class MedicalPersonel(User):
             ret.append(getattr(t1, i))
         return ret
 
-    def forwardLog(self, patient, name, personel):
-        for i in personel:
+    def forwardLog(self, patient, name, personnel):
+        for i in personnel:
             if i.name == name:
                 with open(logs % (patient.name, i.name), "a+") as file:
                     with open(logs % (patient.name, self.name), "r") as f:
@@ -107,9 +107,9 @@ class MedicalPersonel(User):
                 return True
         return False
 
-    def changeNurse(self, name, patients, nurse, personel):
+    def changeNurse(self, name, patients, nurse, personnel):
         t1 = findUser(name, patients)
-        t2 = findUser(nurse, personel)
+        t2 = findUser(nurse, personnel)
         if t1 is None or t2 is None:
             return None
 
