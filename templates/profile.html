@@ -78,12 +78,14 @@
   <h2> Patient Profile </h2>
   <img src="meme.png" alt="meme" style="width:250px; height:250px; float:left;">
   <div style="overflow-y:scroll;">
-    <p>
-        Name: <br>
-        Date of Birth: <br>
-        Cell Phone Number: <br>
-        Email:
-     </p>
+    <table border = 1>
+        {% for i in data.iteritems() %}
+
+            <tr>
+                <th> {{ i }} </th>
+            </tr>
+        {% endfor %}
+    </table>
    </div>
    <div style="overflow-y:scroll;">
      <p>
